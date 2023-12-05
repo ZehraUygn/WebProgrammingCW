@@ -18,10 +18,11 @@ from django.contrib import admin
 from django.urls import include, path
 from django.http import HttpResponse
 
-from .views import main_spa, SignUpView, LogInView
+from .views import main_spa, SignUpView, LogInView, LogoutView
 
 urlpatterns = [
-    path('', main_spa),
+    path('', main_spa, name='index'),
     path('signup/', SignUpView, name='signup'),
     path('login/', LogInView, name='login'),
+    path('logout/', LogoutView, name='logout')
 ]
