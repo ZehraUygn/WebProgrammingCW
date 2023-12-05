@@ -14,6 +14,7 @@ def SignUpView(request):
         form = CustomUserCreationForm(request.POST)
         if form.is_valid():
             form.save()
+            messages.success(request, ("Register successful"))
             return redirect('login')
     return render(request, 'api/spa/signup.html', {'form':form})
 
@@ -32,4 +33,5 @@ def LogInView(request):
 
 def LogoutView(request):
     logout(request)
+    messages.success(request, ("You were logged out."))
     return redirect('login')
