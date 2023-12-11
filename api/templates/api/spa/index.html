@@ -1,4 +1,4 @@
-<!doctype html>
+<!Doctype html>
 <html lang="en">
 
 <head>
@@ -7,12 +7,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ECS639 Web Programming - Group CW Template</title>
   <script type="module" crossorigin src="/static/api/spa/assets/index-969bf769.js"></script>
+  <script type="module" src="{% static 'frontend\src\pages\MainPage.vue' %}"></script>
   <link rel="stylesheet" href="/static/api/spa/assets/index-4e5c0698.css">
 </head>
 
 <body>
-    <div id="app"></div>
-    
+  <!-- <div id="app"></div> -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="{% url 'index' %}">Home</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+      {% if user.is_authenticated %}     
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'logout' %}">Log Out</a>
+        </li>
+      {% else %}
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'login' %}">Log In</a>
+        </li>
+      {% endif %}
+         <!-- <li class="nav-item">
+          <a class="nav-link" href="{% url 'signup' %}">Sign Up</a> -->
+        </li>
+      </ul>
+    </div> 
+    <span>Hello, {{ request.user }}</span>
+  </nav>
+
+  {% block content %}
+  {% endblock %}
 </body>
 
 </html>
