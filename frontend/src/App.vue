@@ -25,6 +25,18 @@ import { RouterView } from "vue-router";
 
 export default defineComponent({
     components: { RouterView },
+    async mounted() {
+        const response = await fetch('localhost:8000/api/getUser/', {
+            credentials: 'include'
+        })
+        const data = await response.json()
+        if (data.user) {
+            alert("User is logged in")
+        }
+        else {
+            alert("NOT LOGGED IN")
+        }
+    }
 });
 
 </script>

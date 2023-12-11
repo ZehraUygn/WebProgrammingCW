@@ -24,5 +24,6 @@ urlpatterns = [
     path('', main_spa, name='index'),
     path('signup/', SignUpView, name='signup'),
     path('login/', LogInView, name='login'),
-    path('logout/', LogoutView, name='logout')
+    path('logout/', LogoutView, name='logout'),
+    # path('getUser/', getUser, name='getUser'),
 ]
