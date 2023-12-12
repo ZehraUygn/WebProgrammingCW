@@ -70,6 +70,10 @@ CORS_ALLOWED_ORIGINS = [
 
 CORS_ALLOW_CREDENTIALS = True
 
+# Example using the database-backed session engine
+SESSION_ENGINE = 'django.contrib.sessions.backends.db'
+SESSION_COOKIE_SECURE = False  # Set to True in production with HTTPS
+
 ROOT_URLCONF = 'project.urls'
 
 TEMPLATES = [

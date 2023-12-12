@@ -11,28 +11,28 @@
 </head>
 
 <body>
-  <!-- <div id="app"></div> -->
+{% if user.is_authenticated %}   
+  <div id="app"></div>
+  <li class="nav-item">
+    <a class="nav-link" href="{% url 'logout' %}">Log Out</a>
+  </li>
+{% else %}
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="{% url 'index' %}">Home</a>
+    <a class="navbar-brand" href="{% url 'main' %}">Home</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
-      {% if user.is_authenticated %}     
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'logout' %}">Log Out</a>
-        </li>
-      {% else %}
+      <ul class="navbar-nav">    
         <li class="nav-item">
           <a class="nav-link" href="{% url 'login' %}">Log In</a>
         </li>
-      {% endif %}
         <li class="nav-item">
           <a class="nav-link" href="{% url 'signup' %}">Sign Up</a>
         </li>
       </ul>
     </div> 
+{% endif %}
     <span>Hello, {{ request.user }}</span>
   </nav>
 

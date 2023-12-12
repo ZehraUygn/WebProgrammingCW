@@ -7,7 +7,10 @@ from .forms import CustomUserCreationForm
 from .models import User
 
 def main_spa(request: HttpRequest) -> HttpResponse:
-    return render(request, 'api/spa/index.html', {})
+    if request.user.is_authenticated:
+        return render(request, 'api/spa/index.html', {})
+    else:
+        return redirect('login')
 
 def SignUpView(request):
     form = CustomUserCreationForm()
@@ -26,7 +29,7 @@ def LogInView(request):
         user = authenticate(request, email=email, password=password)
         if user is not None:
             login(request, user)
-            return redirect('index')
+            return redirect('main')
         else:
             messages.info(request, 'Email or Password is incorrect')
             return redirect('login')
@@ -41,8 +44,10 @@ def getUser(request):
     user = request.user
 
     user_data = {
+        'isAuthenticated': True,
         'email': user.email,
         'birthdate': user.birthdate,
+        'password': user.password,
     }
 
     return JsonResponse(user_data)
