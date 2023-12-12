@@ -16,6 +16,7 @@
             </router-link>
         </div>
         <RouterView class="flex-shrink-0" />
+        Welcome, 
     </main>
 </template>
 
@@ -27,11 +28,11 @@ export default defineComponent({
     components: { RouterView },
     async mounted() {
         const response = await fetch('localhost:8000/api/getUser/', {
-            credentials: 'include'
+            // credentials: 'include'
         })
         const data = await response.json()
         if (data.user) {
-            alert("User is logged in")
+            alert("${data.email} is logged in")
         }
         else {
             alert("NOT LOGGED IN")

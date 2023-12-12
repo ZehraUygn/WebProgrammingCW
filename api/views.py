@@ -4,6 +4,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 
 from .forms import CustomUserCreationForm
+from .models import User
 
 def main_spa(request: HttpRequest) -> HttpResponse:
     return render(request, 'api/spa/index.html', {})
@@ -35,3 +36,13 @@ def LogoutView(request):
     logout(request)
     messages.success(request, ("You were logged out."))
     return redirect('login')
+
+def getUser(request):
+    user = request.user
+
+    user_data = {
+        'email': user.email,
+        'birthdate': user.birthdate,
+    }
+
+    return JsonResponse(user_data)

@@ -18,12 +18,12 @@ from django.contrib import admin
 from django.urls import include, path
 from django.http import HttpResponse
 
-from .views import main_spa, SignUpView, LogInView, LogoutView
+from .views import main_spa, SignUpView, LogInView, LogoutView, getUser
 
 urlpatterns = [
     path('', main_spa, name='index'),
     path('signup/', SignUpView, name='signup'),
     path('login/', LogInView, name='login'),
     path('logout/', LogoutView, name='logout'),
-    # path('getUser/', getUser, name='getUser'),
+    path('getUser/', getUser, name='getUser'),
 ]
