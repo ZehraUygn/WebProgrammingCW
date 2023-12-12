@@ -14,12 +14,19 @@
             >
                 Other Page
             </router-link>
+            |
+            <router-link
+                class=""
+                :to="{name: 'Profile Page'}"
+            >
+                Profile Page
+            </router-link>
         </div>
         <RouterView class="flex-shrink-0" />
     </main>
-    <div v-if="user">
+    <!-- <div v-if="user">
         Welcome, {{ user.email }}
-    </div>
+    </div> -->
 </template>
 
 <script lang="ts">

@@ -46,8 +46,9 @@ def getUser(request):
     user_data = {
         'isAuthenticated': True,
         'email': user.email,
-        'birthdate': user.birthdate,
         'password': user.password,
+        'birthdate': user.birthdate,
+        'image': user.image.url,
     }
 
     return JsonResponse(user_data)

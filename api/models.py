@@ -21,7 +21,7 @@ class User(AbstractUser):
     username = None
     email = models.EmailField(unique=True)
     birthdate = models.DateField(blank=True, null=True)
-    image = models.ImageField(default='default.jpg', upload_to='profile_pics')
+    image = models.ImageField(default='../media/default.jpg', upload_to='../media/profile_pics')
 
     date_joined = models.DateTimeField(default=timezone.now)
 
