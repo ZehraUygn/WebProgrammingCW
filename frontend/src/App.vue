@@ -10,9 +10,9 @@
             |
             <router-link
                 class=""
-                :to="{name: 'Other Page'}"
+                :to="{name: 'Health'}"
             >
-                Other Page
+                Health
             </router-link>
             |
             <router-link
