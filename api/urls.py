@@ -25,5 +25,5 @@ urlpatterns = [
     path('signup/', SignUpView, name='signup'),
     path('login/', LogInView, name='login'),
     path('logout/', LogoutView, name='logout'),
-    path('getUser/', getUser, name='getUser'),
+    path('api/getUser/', getUser, name='getUser'),
 ]

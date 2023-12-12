@@ -16,8 +16,10 @@
             </router-link>
         </div>
         <RouterView class="flex-shrink-0" />
-        Welcome, 
     </main>
+    <div v-if="userData">
+        {{ userData }}
+    </div>
 </template>
 
 <script lang="ts">
@@ -26,18 +28,39 @@ import { RouterView } from "vue-router";
 
 export default defineComponent({
     components: { RouterView },
+    data() {
+        return {
+            userData: null,
+        }
+    },
     async mounted() {
-        const response = await fetch('localhost:8000/api/getUser/', {
-            // credentials: 'include'
-        })
-        const data = await response.json()
-        if (data.user) {
-            alert("${data.email} is logged in")
+    try {
+        const response = await fetch('http://localhost:8000/api/getUser/', {
+            method: 'GET',
+            credentials: 'include',
+        });
+
+        if (!response.ok) {
+            throw new Error('Failed to fetch user data');
         }
-        else {
-            alert("NOT LOGGED IN")
+
+        const data = await response.json();
+
+        console.log('Data from the server:', data);
+
+        if (data.isAuthenticated) {
+            this.userData = data;
+            alert(`${data.email} is logged in`);
+        } else {
+            console.warn('Authentication status:', data.isAuthenticated);
+            alert('NOT LOGGED IN');
         }
+
+    } catch (error) {
+        console.error('Error fetching user data:', error);
+        alert('Error fetching user data. Check console for details.');
     }
+}
 });
 
 </script>
