@@ -1,29 +1,12 @@
 <template>
     <main class="container pt-4">
         <div>
-<<<<<<< Updated upstream
-            <router-link
-                class=""
-                :to="{name: 'Main Page'}"
-            >
-                Main Page
-            </router-link>
-            |
-            <router-link
-                class=""
-                :to="{name: 'Other Page'}"
-            >
-                Other Page
-            </router-link>
-=======
             <router-link class="" :to="{name: 'Main Page'}">Main Page</router-link> |
             <router-link class="" :to="{name: 'Health'}">Health</router-link> |
             <router-link class="" :to="{name: 'Profile Page'}">Profile Page</router-link>
         </div>
         <div v-if="isAuthenticated">
-            Welcome, {{ userData.email }}
-            Username: {{ userData.username }}
->>>>>>> Stashed changes
+            Welcome, {{ user.email }}
         </div>
         <RouterView class="flex-shrink-0" />
     </main>
@@ -32,11 +15,10 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import { RouterView } from "vue-router";
+import { useUserStore } from "./store/User";
 
 export default defineComponent({
     components: { RouterView },
-<<<<<<< Updated upstream
-=======
     computed: {
         user() {
             return useUserStore().user;
@@ -44,11 +26,7 @@ export default defineComponent({
     },
     data() {
         return {
-            userData: {
-                username:'',
-                email: '',
-            // other properties with default values
-        },
+            userData: null,
             isAuthenticated: false,
         };
     },
@@ -78,10 +56,10 @@ export default defineComponent({
             console.error('Error fetching user data:', error);
         }
     },
->>>>>>> Stashed changes
 });
 
 </script>
 
 <style scoped>
+/* Add your component-specific styles here */
 </style>
