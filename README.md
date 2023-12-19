@@ -32,6 +32,14 @@ To run this project in your development machine, follow these steps:
     $ npm install
     ```
 
+    ```console
+    $ npm install axios
+    ```
+
+    ```console
+    $ npm install pinia
+    ```
+
 6. If everything is alright, you should be able to start the Django development server from the main folder:
 
     ```console

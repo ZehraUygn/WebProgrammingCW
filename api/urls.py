@@ -18,8 +18,13 @@ from django.contrib import admin
 from django.urls import include, path
 from django.http import HttpResponse
 
-from .views import main_spa
+from .views import main_spa, UserSignup, UserLogout, UserView, LoginView
 
 urlpatterns = [
     path('', main_spa),
+    path('api/signup/', UserSignup.as_view(), name='signup'),
+    # path('api/login/', UserLogin.as_view(), name='login'),
+    path('api/logout/', UserLogout.as_view(), name='logout'),
+    path('api/user/', UserView.as_view(), name='user'), 
+    path('login/', LoginView, name='login-form'), 
 ]
