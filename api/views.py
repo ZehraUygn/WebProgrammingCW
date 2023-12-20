@@ -65,3 +65,12 @@ def LoginView(request):
         else:
             return redirect('login')
     return render(request, 'api/spa/login.html', {})
+
+def options_view(request):
+    response = HttpResponse()
+    response['Access-Control-Allow-Origin'] = 'http://localhost:5173'
+    response['Access-Control-Allow-Methods'] = 'GET, POST, OPTIONS'
+    response['Access-Control-Allow-Headers'] = 'Content-Type'
+    response['Access-Control-Allow-Credentials'] = 'true'
+    response['Vary'] = 'Origin'
+    return response
