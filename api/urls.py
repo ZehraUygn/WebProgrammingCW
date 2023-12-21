@@ -20,8 +20,8 @@ from django.http import HttpResponse
 from . import views
 
 urlpatterns = [
-    path('', main_spa),
-    path('signup/', signupPage, name='signup'),
-    path('login/', loginPage, name='login'),
-    path('logout/', logout, name='logout'),
+    path('', views.main_spa),
+    path('signup/', views.signupPage, name='signup'),
+    path('login/', views.loginPage, name='login'),
+    path('logout/', views.logout, name='logout'),
 ]

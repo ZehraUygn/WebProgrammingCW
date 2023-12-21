@@ -156,7 +156,7 @@ class Message(models.Model):
 
     sender = models.ForeignKey(to=User, related_name="sent", on_delete=models.CASCADE)
     text = models.CharField(max_length=4096)
-    time = models.DateTimeField(default=timezone.now)  # Use timezone.now instead of datetime.now()
+    # time = models.DateTimeField(default=timezone.now)  # Use timezone.now instead of datetime.now()
 
     # A product has many messages
     product = models.ForeignKey(
