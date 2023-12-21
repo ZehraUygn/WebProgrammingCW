@@ -18,8 +18,11 @@ from django.contrib import admin
 from django.urls import include, path
 from django.http import HttpResponse
 
-from .views import main_spa
+from .views import main_spa, signupPage, loginPage, logout
 
 urlpatterns = [
     path('', main_spa),
+    path('signup/', signupPage, name='signup'),
+    path('login/', loginPage, name='login'),
+    path('logout/', logout, name='logout'),
 ]

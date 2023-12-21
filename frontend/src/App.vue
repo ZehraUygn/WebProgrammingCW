@@ -16,6 +16,7 @@
             </router-link>
         </div>
         <RouterView class="flex-shrink-0" />
+        <a href="http://localhost:8000/logout">Logout</a>
     </main>
 </template>
 
