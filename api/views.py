@@ -3,7 +3,7 @@ from django.shortcuts import render
 import datetime
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http.multipartparser import MultiPartParser
-from .models import User, Profile
+from .models import User, Profile, Category, Article
 from .forms import SignupForm, LoginForm
 from django.contrib import auth
 from django.views.decorators.csrf import csrf_exempt
@@ -18,7 +18,6 @@ from django.core.mail import send_mail
 from django.http import HttpRequest, HttpResponse, JsonResponse
 from django.http import QueryDict
 from django.views.decorators.http import require_http_methods
-
 
 def main_spa(request: HttpRequest) -> HttpResponse:
     return render(request, 'api/spa/index.html', {})
@@ -107,3 +106,78 @@ def logout(request: HttpRequest) -> HttpResponse:
     else:
         auth.logout(request)
         return redirect("%s?next=%s" % (settings.LOGIN_URL, request.path))
+
+@csrf_exempt
+@require_http_methods(['GET'])
+def profile(request: HttpRequest) -> HttpResponse:
+    """
+    User page - display details of user
+    It handles GET request to display user's profile page
+    """
+
+    user = request.user
+    if user.is_authenticated:
+
+        if request.method == "GET":
+            profile = get_object_or_404(Profile, email=user.email)
+
+            return JsonResponse(
+                {
+                    "logged_in": True,
+                    "username": user.username,
+                    "profile": profile.to_dict(),
+                }
+            )
+    else:
+        # user is not logged in
+        return JsonResponse({"logged_in": False})
+
+
+@csrf_exempt
+@require_http_methods(['PUT'])
+def profile_api(request: HttpRequest, profile_id: int) -> HttpResponse:
+    """
+    Method that handles PUT requests for updating profile details
+    """
+    # Fetch the details of the profile
+    profile = get_object_or_404(Profile, id=profile_id)
+    user = profile.user_acc
+    print("USER", user.email)
+
+    print("PROFILE", profile.email)
+
+    if request.method == 'PUT':
+        if request.content_type.startswith('multipart'):
+            put, files = request.parse_file_upload(request.META, request)
+            request.FILES.update(files)
+            request.PUT = put.dict()
+    
+        else:
+            request.PUT = QueryDict(request.body).dict()
+
+        # update DB with the new created team
+        # Get the team's details
+ 
+
+        profile.email = request.PUT["email"]
+        user.email = request.PUT["email"]
+        user.username = request.PUT["username"]
+        profile.date_of_birth = request.PUT["date_of_birth"]
+        
+        if len(request.FILES.keys())!=0:
+            img_data = request.FILES['profile_picture']
+            if img_data is not None:
+                
+
+                profile.profile_picture=img_data
+        user.save()
+        # profile.date_of_birth = data["date"]
+        profile.save()
+        
+        return JsonResponse(
+            {
+                "logged_in": True,
+                "username": user.username,
+                "profile": profile.to_dict(),
+            }
+        )

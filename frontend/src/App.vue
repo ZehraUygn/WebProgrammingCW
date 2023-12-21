@@ -10,13 +10,13 @@
             |
             <router-link
                 class=""
-                :to="{name: 'Other Page'}"
+                :to="{name: 'Profile Page'}"
             >
-                Other Page
+                Profile Page
             </router-link>
         </div>
         <RouterView class="flex-shrink-0" />
-        <a href="http://localhost:8000/logout">Logout</a>
+        <a href="http://localhost:8000/logout/">Logout</a>
     </main>
 </template>
 

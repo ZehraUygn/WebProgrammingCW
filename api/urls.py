@@ -24,4 +24,6 @@ urlpatterns = [
     path('signup/', views.signupPage, name='signup'),
     path('login/', views.loginPage, name='login'),
     path('logout/', views.logout, name='logout'),
+    path('api/profile/', views.profile, name='profile'),
+    path('api/profile/<int:profile_id>', views.profile_api, name="api-profile"),
 ]

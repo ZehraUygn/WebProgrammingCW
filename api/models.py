@@ -107,65 +107,11 @@ class Article(models.Model):
             "content": self.content,
         }
 
-
-# class MessageResponse(models.Model):
+# class Comment(models.Model):
 #     """
-#     Model that represents a reply from the owner to a message
-#     It contains a text field containing the reply
-#     """
-
-#     text = models.CharField(max_length=4096)
-
-#     def __str__(self):
-#         return self.text
-
-#     def to_dict(self):
-#         return {
-#             "id": self.id,
-#             "text": self.text,
-#         }
-
-
-# class Message(models.Model):
-#     """
-#     A user can send a message to the owner of the product
-#     This model contains: - sender - user that sends the message
-#                          - text of the message
-#                          - time - time the message was sent
+#     The attribute of a comment:
+#         - comment
+#         - article
+#         - username
 #     """
 
-#     sender = models.ForeignKey(to=User, related_name="sent", on_delete=models.CASCADE)
-#     text = models.CharField(max_length=4096)
-#     # time = models.DateTimeField(default=timezone.now)  # Use timezone.now instead of datetime.now()
-
-#     # A product has many messages
-#     product = models.ForeignKey(
-#         to=Product,
-#         blank=True,
-#         null=True,
-#         related_name="about",
-#         on_delete=models.CASCADE,
-#     )
-
-#     # Each message can have only one reply
-#     message_response = models.ForeignKey(
-#         to=MessageResponse,
-#         default=1,
-#         blank=True,
-#         null=True,
-#         related_name="response",
-#         on_delete=models.CASCADE,
-#     )
-
-#     def __str__(self):
-#         return f"From {self.text} "
-
-#     def to_dict(self):
-#         return {
-#             "id": self.id,
-#             "sender": self.sender.username,
-#             "text": self.text,
-#             "product": self.product.id,
-#             "response_id": self.message_response.id,
-#             "time": self.time.strftime("%Y-%d-%mT%H:%M"),
-#         }
