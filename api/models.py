@@ -2,7 +2,6 @@ from datetime import *
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 
-
 class User(AbstractUser):
     username = models.CharField(max_length=50, unique=True)
     profile = models.OneToOneField(
@@ -25,19 +24,16 @@ class User(AbstractUser):
         }
 
     @property
-    def messages(self):
+    def comments(self):
         """
-        Messages sent and received by this user
-        -> Sorted by time received
+        Comments sent & received by the user
         """
-        return (self.sent.all() | self.received.all()).order_by("-time")
-
+        return (self.sent_comments.all() | self.received_comments.all()).order_by("-time")
 
 class Profile(models.Model):
     email = models.EmailField(max_length=254)
     date_of_birth = models.DateField(null=True)
-    # profile_picture = models.ImageField(upload_to="images", blank=True)
-    profile_picture = models.ImageField(upload_to="images", blank=True, default='../media/images/images.png')
+    profile_picture = models.ImageField(upload_to="images", blank=True, default='../media/images/default.jpg')
 
     user_acc = models.ForeignKey(
         to=User, 
@@ -92,7 +88,7 @@ class Article(models.Model):
     category = models.ForeignKey(
         Category, 
         on_delete=models.CASCADE,
-        null=False,  # Ensures that each article must have a category
+        null=False,  # Ensures each article for each category
         default=None 
     )
 
@@ -107,11 +103,23 @@ class Article(models.Model):
             "content": self.content,
         }
 
-# class Comment(models.Model):
-#     """
-#     The attribute of a comment:
-#         - comment
-#         - article
-#         - username
-#     """
+class Comment(models.Model):
+    """
+    The attributes of a comment:
+        - text
+        - article
+        - username
+    """
+    user = models.ForeignKey(User, related_name='comments', on_delete=models.CASCADE)
+    article = models.ForeignKey(Article, related_name='comments', on_delete=models.CASCADE)
+    text = models.TextField()
+
+    def to_dict(self):
+        return {
+            "username": self.user.username,
+            "article_id": self.article.id,
+            "text": self.text,
+        }
+
+
 

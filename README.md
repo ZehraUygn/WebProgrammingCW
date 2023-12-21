@@ -61,3 +61,29 @@ Once your project is ready to be deployed you will need to 'build' the Vue app a
 ## License
 
 This code is dedicated to the public domain to the maximum extent permitted by applicable law, pursuant to [CC0](http://creativecommons.org/publicdomain/zero/1.0/).
+
+
+List of group members:
+Nur Aleya Aqilah Kamal Ariffin - User account creation, database and server
+Nur Adriana Farzana Binti Azman - Articles and Comment frontend
+Safiye Zehra Uygun - Profile Page, Database
+Faruk Numan Kandemir - Ajax and Frontend
+ 
+
+the URL of your deployed application (if deployed): 
+
+the username and password for the admin page: 
+username: admin
+password: 123456789
+
+the username and passwords of the 5 test users:
+Username: farzana01 Password:123456
+Username: user1 Password:user1web
+Username: user2 Password:user2web
+Username: user3 Password:user3web
+Username: user4 Password:user4web
+
+
+
+
+

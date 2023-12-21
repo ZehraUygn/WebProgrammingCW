@@ -26,4 +26,8 @@ urlpatterns = [
     path('logout/', views.logout, name='logout'),
     path('api/profile/', views.profile, name='profile'),
     path('api/profile/<int:profile_id>', views.profile_api, name="api-profile"),
+    path('api/articles/', views.articles_api, name="api-articles"),
+    path("api/articles/<int:article_id>", views.article_api, name="api-article"),
+    path("api/comment/", views.comments_api, name="api-comment"),
+
 ]
