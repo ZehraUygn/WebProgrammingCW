@@ -1,20 +1,14 @@
 from django.http import HttpResponse, HttpRequest, JsonResponse
 from django.shortcuts import render
-import datetime
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http.multipartparser import MultiPartParser
 from .models import User, Profile, Category, Article, Comment
 from .forms import SignupForm, LoginForm
 from django.contrib import auth
 from django.views.decorators.csrf import csrf_exempt
-from datetime import datetime
-from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect
 from django.conf import settings
-from django.contrib.auth import logout
-from datetime import date
 from django.conf import settings
-from django.core.mail import send_mail
 from django.http import HttpRequest, HttpResponse, JsonResponse
 from django.http import QueryDict
 from django.views.decorators.http import require_http_methods
