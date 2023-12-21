@@ -57,9 +57,8 @@ def signupPage(request: HttpRequest) -> HttpResponse:
             # on request objects, for all subsequent requests until logout
             user = auth.authenticate(username=username, password=password)
             if user is not None:
-                auth.login(request, user)
                 # to be forwarded to the main page - front-end - maybe profile
-                return redirect("http://localhost:5173/")
+                return redirect("http://localhost:8000/login")
 
     return render(request, "api/spa/signup.html", {"form": SignupForm})
 
