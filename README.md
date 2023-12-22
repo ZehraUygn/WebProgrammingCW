@@ -70,7 +70,7 @@ Safiye Zehra Uygun - Profile Page, Database
 Faruk Numan Kandemir - Ajax and Frontend
  
 
-the URL of your deployed application (if deployed): 
+the URL of your deployed application (if deployed): https://group38-web-apps-ecs21405.apps.a.comp-teach.qmul.ac.uk
 
 the username and password for the admin page: 
 username: admin
